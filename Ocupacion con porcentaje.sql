@@ -1,17 +1,17 @@
 DECLARE @FechaInicio DATETIME = '2024-04-01';
 DECLARE @FechaFin DATETIME = '2024-04-30';
-DECLARE @UnidadOperativa int = 60;
+DECLARE @UnidadOperativa int = 60; --dejar en 0 para todos los registros
 
 DECLARE @Multiplicador int = 
     CASE @UnidadOperativa 
-		WHEN 20 THEN 14		--NEONATOLOGÕA                  
+		WHEN 20 THEN 14		--NEONATOLOG√çA                  
 		WHEN 30 THEN 2		--GUARDIA
-        WHEN 50 THEN 12		--INTERNACION PB                
-        WHEN 51 THEN 14		--INTERNACION 1A                
-        WHEN 53 THEN 17		--INTERNACION 2A                
+        	WHEN 50 THEN 12		--INTERNACION PB                
+        	WHEN 51 THEN 14		--INTERNACION 1A                
+        	WHEN 53 THEN 17		--INTERNACION 2A                
 		WHEN 60 THEN 12		--MATERNIDAD
 		WHEN 70 THEN 8		--QUIROFANOS GRALES
-		WHEN 90 THEN 6		--SERV. GASTROENTEROLOGÕA                   
+		WHEN 90 THEN 6		--SERV. GASTROENTEROLOG√çA                   
 		WHEN 150 THEN 7		--SERV. HEMODINAMIA                          
 		WHEN 180 THEN 6		--UNIDAD CORONARIA              
 		WHEN 190 THEN 10	--UNIDAD TERAPIA INTENSIVA      	
@@ -112,7 +112,7 @@ SELECT
                 )
         END) OVER()) * 100.0 / 
         NULLIF(@Multiplicador * @HorasTotalesPeriodo, 0) AS DECIMAL(10,2)
-    ) AS 'Porcentaje de OcupaciÛn'
+    ) AS 'Porcentaje de Ocupaci√≥n'
 
 FROM
     GACIHEALTH..INTERNAD (NOLOCK) i
